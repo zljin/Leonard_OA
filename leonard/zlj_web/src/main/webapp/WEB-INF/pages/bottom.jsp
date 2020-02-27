@@ -17,17 +17,18 @@
 </div>
 </div>
 <!-- JavaScript files-->
-<script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/popper.js/umd/popper.min.js"> </script>
-<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
-<script src="/vendor/jquery.cookie/jquery.cookie.js"> </script>
-<script src="/vendor/chart.js/Chart.min.js"></script>
-<script src="/vendor/jquery-validation/jquery.validate.min.js"></script>
-<script src="/js/charts-home.js"></script>
+<script src="${pageContext.request.contextPath}/vendor/jquery/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/vendor/popper.js/umd/popper.min.js"> </script>
+<script src="${pageContext.request.contextPath}/vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/vendor/jquery.cookie/jquery.cookie.js"> </script>
+<script src="${pageContext.request.contextPath}/vendor/chart.js/Chart.min.js"></script>
+<script src="${pageContext.request.contextPath}/vendor/jquery-validation/jquery.validate.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/charts-home.js"></script>
+
 <!-- Main File-->
-<script src="/js/front.js"></script>
+<script src="${pageContext.request.contextPath}/js/front.js"></script>
 
 <!--点星星-->
-<script src="/js/love.js"></script>
+<script src="${pageContext.request.contextPath}/js/love.js"></script>
 </body>
 </html>

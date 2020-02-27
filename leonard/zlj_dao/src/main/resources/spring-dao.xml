@@ -25,6 +25,21 @@ http://www.springframework.org/schema/context ">
 
         <!--Mapper配置文件中在parameterType的值就不用写成全路径名了-->
         <property name="typeAliasesPackage" value="com.zlj.entity"/>
+
+        <!-- 注意 pagehelper 其他配置:这个是进行分页的操作 -->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <!--使用下面的方式配置参数，一行配置一个 -->
+                        <value>
+                            params=value1
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+
     </bean>
 
     <!--映射器接口:自动调用-->

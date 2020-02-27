@@ -41,4 +41,9 @@ public class EmployeeBizImpl implements EmployeeBiz {
     public List<Employee> getAll() {
         return employeeDao.selectAll();
     }
+
+    @Override
+    public List<Employee> getAllByDepartmentName(String dname) {
+        return employeeDao.selectByDepartmentName(dname);
+    }
 }

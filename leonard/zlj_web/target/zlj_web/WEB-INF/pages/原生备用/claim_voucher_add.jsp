@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>报销单填写</title>
+    <script src="/js/items.js"></script>
 </head>
 <body>
 <form:form action="/claim_voucher/add" modelAttribute="info">

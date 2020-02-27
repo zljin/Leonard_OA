@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.4//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zlj.dao.AttachFileDao">
+
+    <resultMap id="attachfile" type="AttachFile">
+        <id property="id" column="id" javaType="Integer"/>
+        <result property="filename" column="filename" javaType="String"/>
+        <result property="path" column="path" javaType="String"/>
+        <result property="cid" column="cid" javaType="Integer"/>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" parameterType="AttachFile">
+        insert into attach_file(filename,path,cid) values (#{filename},#{path},#{cid})
+    </insert>
+
+    <select id="select" resultMap="attachfile" parameterType="Integer">
+        select t.* from attach_file t where t.cid=#{cid}
+    </select>
+
+
+</mapper>

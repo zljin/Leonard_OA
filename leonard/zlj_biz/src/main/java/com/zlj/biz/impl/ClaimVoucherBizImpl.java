@@ -5,10 +5,7 @@ import com.zlj.dao.ClaimVoucherDao;
 import com.zlj.dao.ClaimVoucherItemDao;
 import com.zlj.dao.DealRecordDao;
 import com.zlj.dao.EmployeeDao;
-import com.zlj.entity.ClaimVoucher;
-import com.zlj.entity.ClaimVoucherItem;
-import com.zlj.entity.DealRecord;
-import com.zlj.entity.Employee;
+import com.zlj.entity.*;
 import com.zlj.global.Contant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -118,9 +115,15 @@ public class ClaimVoucherBizImpl implements ClaimVoucherBiz {
         ClaimVoucher claimVoucher = claimVoucherDao.select(id);
         Employee employee = employeeDao.select(claimVoucher.getCreateSn());
 
+
+
         //1.修改状态
         claimVoucher.setStatus(Contant.CLAIMVOUCHER_SUBMIT);
-        claimVoucher.setNextDealSn(employeeDao.selectByDepartmentAndPost(employee.getDepartmentSn(),Contant.POST_FM).get(0).getSn());
+        if(employee.getPost().equals(Contant.POST_FM)){//若为部门经理直接提交到总经理审核
+            claimVoucher.setNextDealSn(employeeDao.selectByDepartmentAndPost(null,Contant.POST_GM).get(0).getSn());
+        }else{
+            claimVoucher.setNextDealSn(employeeDao.selectByDepartmentAndPost(employee.getDepartmentSn(),Contant.POST_FM).get(0).getSn());
+        }
         claimVoucherDao.update(claimVoucher);
 
         //2.记录流程处理
@@ -145,32 +148,33 @@ public class ClaimVoucherBizImpl implements ClaimVoucherBiz {
          * 审核报销单流程:修改状态,记录处理流程
          * 关注点:
          * 1.不同操作的结果
-         * 2.是否需要复审
+         * 2.是否需要复审（总经理复审）
          * 3.打款
          */
         if(dealRecord.getDealWay().equals(Contant.DEAL_PASS)){
+            //金额小于5000是部门经理批准通过 或者 大于5000是总经理结批准通过
             if(claimVoucher.getTotalAmount()<=Contant.LIMIT_CHECK || employee.getPost().equals(Contant.POST_GM)){
                 claimVoucher.setStatus(Contant.CLAIMVOUCHER_APPROVED);
                 claimVoucher.setNextDealSn(employeeDao.selectByDepartmentAndPost(null,Contant.POST_CASHIER).get(0).getSn());
 
                 dealRecord.setDealResult(Contant.CLAIMVOUCHER_APPROVED);
-            }else{
+            }else{//金额大于5000部门经理批准通过后到总经理结点进行复审
                 claimVoucher.setStatus(Contant.CLAIMVOUCHER_RECHECK);
                 claimVoucher.setNextDealSn(employeeDao.selectByDepartmentAndPost(null,Contant.POST_GM).get(0).getSn());
 
                 dealRecord.setDealResult(Contant.CLAIMVOUCHER_RECHECK);
             }
-        }else if(dealRecord.getDealWay().equals(Contant.DEAL_BACK)){
+        }else if(dealRecord.getDealWay().equals(Contant.DEAL_BACK)){//报销单打回修改
             claimVoucher.setStatus(Contant.CLAIMVOUCHER_BACK);
             claimVoucher.setNextDealSn(claimVoucher.getCreateSn());
 
             dealRecord.setDealResult(Contant.CLAIMVOUCHER_BACK);
-        }else if(dealRecord.getDealWay().equals(Contant.DEAL_REJECT)){
+        }else if(dealRecord.getDealWay().equals(Contant.DEAL_REJECT)){//报销单直接取消
             claimVoucher.setStatus(Contant.CLAIMVOUCHER_TERMINATED);
             claimVoucher.setNextDealSn(null);
 
             dealRecord.setDealResult(Contant.CLAIMVOUCHER_TERMINATED);
-        }else if(dealRecord.getDealWay().equals(Contant.DEAL_PAID)){
+        }else if(dealRecord.getDealWay().equals(Contant.DEAL_PAID)){//打款
             claimVoucher.setStatus(Contant.CLAIMVOUCHER_PAID);
             claimVoucher.setNextDealSn(null);
 
@@ -179,5 +183,10 @@ public class ClaimVoucherBizImpl implements ClaimVoucherBiz {
 
         claimVoucherDao.update(claimVoucher);
         dealRecordDao.insert(dealRecord);
+    }
+
+    @Override
+    public List<StatisResult> calculateStatis() {
+        return claimVoucherDao.calculateStatis();
     }
 }

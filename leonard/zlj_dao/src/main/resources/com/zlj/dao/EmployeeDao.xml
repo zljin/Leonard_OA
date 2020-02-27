@@ -57,5 +57,12 @@
         </if>
     </select>
 
+    <select id="selectByDepartmentName" resultMap="employee">
+        select e.*,d.sn dsn,d.name dname from employee e left join department d on d.sn=e.department_sn
+        where e.sn is not NULL
+        <if test="dname!=null">
+            and d.name=#{dname}
+        </if>
+    </select>
 
 </mapper>

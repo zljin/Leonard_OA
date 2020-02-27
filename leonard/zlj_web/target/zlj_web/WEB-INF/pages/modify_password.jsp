@@ -32,7 +32,7 @@
                     </div>
                     <div class="card-body">
                         <p>小可爱,请记住改完后的密码哟(#^.^#)</p>
-                        <form method="post" action="modify_password">
+                        <form method="post" action="${pageContext.request.contextPath}/modify_password">
                             <div class="form-group">
                                 <label class="form-control-label">原始密码</label>
                                 <input type="password" name="old" id="old" placeholder="Password" class="form-control">

@@ -40,7 +40,7 @@ public class Contant {
     public static final String CLAIMVOUCHER_PAID="已打款";
 
     //审批额度
-    public static final double LIMIT_CHECK=5000.00;
+    public static final double LIMIT_CHECK=2000.00;
 
     //报销单处理方式
     public static final String DEAL_CREATE="创建";

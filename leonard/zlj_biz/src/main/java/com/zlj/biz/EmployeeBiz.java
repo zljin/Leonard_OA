@@ -10,4 +10,5 @@ public interface EmployeeBiz {
     void remove(String sn);
     Employee get(String sn);
     List<Employee> getAll();
+    List<Employee> getAllByDepartmentName(String name);
 }

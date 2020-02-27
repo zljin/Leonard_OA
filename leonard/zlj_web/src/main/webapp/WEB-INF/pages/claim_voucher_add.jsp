@@ -31,7 +31,7 @@
                         <h3 class="h4">报销单详情信息</h3>
                     </div>
                     <div class="card-body">
-                        <form:form action="/claim_voucher/add" modelAttribute="info" class="form-horizontal">
+                        <form:form action="${pageContext.request.contextPath}/claim_voucher/add" modelAttribute="info" class="form-horizontal" enctype="multipart/form-data">
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">事由</label>
                                 <div class="col-sm-9">
@@ -63,6 +63,14 @@
                                     <form:input id="totalMoney" path="claimVoucher.totalAmount" cssClass="form-control" readonly="true"/>
                                 </div>
                             </div>
+
+                            <div class="form-group row">
+                                <label for="fileInput" class="col-sm-3 form-control-label"> 附件文件上传 </label>
+                                <div class="col-sm-9">
+                                    <input type="file"  id="fileInput" name="file" width="120px" class="form-control-file"><br>
+                                </div>
+                            </div>
+
                             <button type="button" id="addItemButton" class="btn btn-primary"> + </button>
                             <button type="submit" class="btn btn-primary"> 填写保存 </button>
                             <button type="button" class="btn btn-primary" onclick="javascript:window.history.go(-1);"> 返回 </button>
@@ -77,4 +85,4 @@
 <jsp:include page="bottom.jsp"/>
 
 <!--动态表单传输-->
-<script src="/js/items.js?v=1"></script>
+<script src="${pageContext.request.contextPath}/js/items.js?v=1"></script>

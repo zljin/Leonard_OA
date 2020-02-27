@@ -34,7 +34,13 @@
                         <h3 class="h4">报销单详情信息</h3>
                     </div>
                     <div class="card-body">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" method="get" action="${pageContext.request.contextPath}/claim_voucher/download">
+                            <div class="form-group row">
+                                <label class="col-sm-3 form-control-label">报销单号</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="cid" value="${claimVoucher.id}" class="form-control" readonly="true">
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">事由</label>
                                 <div class="col-sm-9">
@@ -98,7 +104,8 @@
                                 </div>
                             </div>
                             <button type="button" class="btn btn-primary" onclick="javascript:window.history.go(-1);"> 返回 </button>
-
+                            <button type="button" class="btn btn-primary" onclick="javascript:window.print();"> 打印 </button>
+                            <button type="submit" class="btn btn-primary"> 附件下载 </button>
                         </form>
                     </div>
                 </div>

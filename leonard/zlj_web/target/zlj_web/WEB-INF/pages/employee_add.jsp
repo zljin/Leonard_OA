@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-body">
                         <p>(#^.^#)欢迎新的成员,默认密码000000,请及时修改</p>
-                        <form:form action="/employee/add" modelAttribute="employee">
+                        <form:form action="${pageContext.request.contextPath}/employee/add" modelAttribute="employee">
                             <div class="form-group">
                                 <form:input path="sn"  placeholder="员工编号..." class="form-control"/><br>
                             </div>

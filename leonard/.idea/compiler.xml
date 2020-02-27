@@ -11,5 +11,11 @@
         <module name="zlj_dao" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="zlj_busiframe" target="1.8" />
+      <module name="zlj_DS" target="1.8" />
+      <module name="zlj_exeprogress" target="1.8" />
+      <module name="zlj_vue" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

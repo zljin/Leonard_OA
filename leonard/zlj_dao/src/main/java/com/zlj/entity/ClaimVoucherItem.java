@@ -1,13 +1,13 @@
 package com.zlj.entity;
 
-//报销单明细
+//报销单条目明细
 public class ClaimVoucherItem {
 
     private Integer id;
     private Integer claimVoucherId;//关联报销单的外键
     private String item; //费用类型
     private Double amount;
-    private String comment;//条目说明
+    private String comment;//说明
 
     public Integer getId() {
         return id;

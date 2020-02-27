@@ -12,7 +12,7 @@
 <div class="breadcrumb-holder container-fluid">
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active">部门添加</li>
+        <li class="breadcrumb-item active">部门修改</li>
     </ul>
 </div>
 <!--Forms Sections-->
@@ -33,7 +33,7 @@
                     </div>
                     <div class="card-body">
                         <p>(#^.^#)</p>
-                        <form:form action="/department/update" modelAttribute="department">
+                        <form:form action="${pageContext.request.contextPath}/department/update" modelAttribute="department">
                             <div class="form-group">
                                 <form:input path="sn" placeholder="部门编号.." class="form-control" readonly="true"/>
                             </div>

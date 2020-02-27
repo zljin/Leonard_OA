@@ -1,6 +1,7 @@
 package com.zlj.dao;
 
 import com.zlj.entity.ClaimVoucher;
+import com.zlj.entity.StatisResult;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,5 +18,8 @@ public interface ClaimVoucherDao {
     List<ClaimVoucher> selectByCreateSn(String csn);
     //查询某一个员工能够处理的所有报销单
     List<ClaimVoucher> selectByNextDealSn(String ndsn);
+
+    //统计部门费用
+    List<StatisResult> calculateStatis();
 
 }

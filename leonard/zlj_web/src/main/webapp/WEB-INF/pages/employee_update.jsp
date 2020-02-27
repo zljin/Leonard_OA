@@ -34,7 +34,7 @@
                     </div>
                     <div class="card-body">
                         <p>Tip:请及时修改个人信息</p>
-                        <form:form action="/employee/update" modelAttribute="employee">
+                        <form:form action="${pageContext.request.contextPath}/employee/update" modelAttribute="employee">
                             <div class="form-group">
                                 <form:input path="sn"  placeholder="员工编号..." class="form-control"/><br>
                             </div>

@@ -20,6 +20,13 @@
         </association>
     </resultMap>
 
+
+    <resultMap id="statisResult" type="StatisResult">
+        <result property="departSn" column="departSn" javaType="String"/>
+        <result property="departName" column="departName" javaType="String"/>
+        <result property="total" column="total" javaType="int"/>
+    </resultMap>
+
     <!--
         useGeneratedKeys="true" keyProperty="id"
         在执行insert之后mysql会自增主键,
@@ -59,6 +66,33 @@
         left join employee ce on cv.create_sn=ce.sn
         left join employee d on cv.next_deal_sn=d.sn
         where cv.next_deal_sn=#{ndsn} order by cv.create_time desc
+    </select>
+
+    <select id="calculateStatis" resultMap="statisResult" >
+        SELECT
+            a.department_sn departSn,
+            b.NAME departName,
+            sum(total_amount) total
+        FROM
+            (
+                SELECT
+                    t1.create_sn,
+                    t1.total_amount,
+                    t2.department_sn,
+                    t1.create_time
+                FROM
+                    claim_voucher t1,
+                    employee t2
+                WHERE
+                    t1.create_sn = t2.sn
+                AND t1. STATUS = '已打款'
+		        AND t1.next_deal_sn IS NULL
+            ) a,
+            department b
+        WHERE
+            a.department_sn = b.sn
+        GROUP BY
+            a.department_sn;
     </select>
 
 

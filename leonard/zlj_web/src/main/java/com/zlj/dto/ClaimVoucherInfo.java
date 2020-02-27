@@ -27,5 +27,4 @@ public class ClaimVoucherInfo {
     public void setItems(List<ClaimVoucherItem> items) {
         this.items = items;
     }
-
 }

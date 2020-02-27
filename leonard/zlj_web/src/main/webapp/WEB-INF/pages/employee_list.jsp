@@ -30,6 +30,9 @@
                     </div>
                     <div class="card-header d-flex align-items-center">
                         <h3 class="h4">员工管理表</h3>
+                        <h3 class="h5">
+                            (总员工:${pageInfo.total},每页显示${pageInfo.pageSize}条,共${pageInfo.pages}页,当前${pageInfo.pageNum}页)
+                        </h3>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -53,21 +56,47 @@
                                     <td>${emp.departmentSn}</td>
                                     <td>${emp.post}</td>
                                     <td>
-                                        <a href="/employee/to_update?sn=${emp.sn}">员工编辑</a>
-                                        <a href="/employee/remove?sn=${emp.sn}">员工删除</a>
+                                        <a href="${pageContext.request.contextPath}/employee/to_update?sn=${emp.sn}">员工编辑</a>
+                                        <a href="${pageContext.request.contextPath}/employee/remove?sn=${emp.sn}">员工删除</a>
                                     </td>
                                 </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>
                         </div>
-                        <button onclick="javascript:window.location.href='/employee/to_add;'"  class="btn btn-primary" > 添加员工 </button>
+
+                        <div>
+                            <nav class="pagination-outer" aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a href="${pageContext.request.contextPath}/employee/list?pageNum=${pageInfo.prePage}" class="page-link" aria-label="Previous">
+                                            <span aria-hidden="true">«</span>
+                                        </a>
+                                    </li>
+
+                                    <c:forEach var="index" begin="1" end="${totalPage}">
+                                        <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/employee/list?pageNum=${index}">${index}</a></li>
+                                    </c:forEach>
+
+
+                                    <li class="page-item">
+                                        <a href="${pageContext.request.contextPath}/employee/list?pageNum=${pageInfo.nextPage}" class="page-link" aria-label="Next">
+                                            <span aria-hidden="true">»</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                        <button onclick="javascript:window.location.href='${pageContext.request.contextPath}/employee/to_add;'"  class="btn btn-primary" > 添加员工 </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
 
 
 <jsp:include page="bottom.jsp"/>

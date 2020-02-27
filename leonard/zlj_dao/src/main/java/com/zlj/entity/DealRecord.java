@@ -13,8 +13,8 @@ public class DealRecord {
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     private Date dealTime;
 
-    private String dealWay;
-    private String dealResult;
+    private String dealWay;//报销单状态
+    private String dealResult;//报销单的处理方式
     private String comment;
 
     private Employee dealer;//关联外键

@@ -37,6 +37,7 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>报销单编号</th>
                                     <th>事由</th>
                                     <th>状态</th>
                                     <th>创建人</th>
@@ -49,12 +50,13 @@
                                 <c:forEach items="${list}" var="cv">
                                     <tr>
                                         <th scope="row">#</th>
+                                        <td>${cv.id}</td>
                                         <td>${cv.cause}</td>
                                         <td>${cv.status}</td>
                                         <td>${cv.creater.name}</td>
                                         <td>${cv.totalAmount}</td>
                                         <td><spring:eval expression="cv.createTime"/></td>
-                                        <td><a href="/claim_voucher/detail?id=${cv.id}">详细信息</a></td>
+                                        <td><a href="${pageContext.request.contextPath}/claim_voucher/detail?id=${cv.id}">详细信息</a></td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>

@@ -31,6 +31,7 @@
                                 <thead>
                                 <tr>
                                     <th>Select</th>
+                                    <th>报销单编号</th>
                                     <th>事由</th>
                                     <th>状态</th>
                                     <th>创建人</th>
@@ -48,6 +49,7 @@
                                                 <span class="checkbox mn"></span>
                                             </label>
                                         </td>
+                                        <td>${cv.id}</td>
                                         <td>${cv.cause}</td>
                                         <td>
                                             <span class="badge badge-warning mr10 fs11">${cv.status}</span>
@@ -57,16 +59,16 @@
                                         <td><spring:eval expression="cv.createTime"/></td>
                                         <td>
                                             <c:if test="${cv.status==Contant.CLAIMVOUCHER_CREATED || cv.status==Contant.CLAIMVOUCHER_BACK}">
-                                                <a href="/claim_voucher/to_update?id=${cv.id}">修改</a>
-                                                <a href="/claim_voucher/submit?id=${cv.id}">提交</a>
+                                                <a href="${pageContext.request.contextPath}/claim_voucher/to_update?id=${cv.id}">修改</a>
+                                                <a href="${pageContext.request.contextPath}/claim_voucher/submit?id=${cv.id}">提交</a>
                                             </c:if>
                                             <c:if test="${cv.status==Contant.CLAIMVOUCHER_SUBMIT || cv.status==Contant.CLAIMVOUCHER_RECHECK}">
-                                                <a href="/claim_voucher/to_check?id=${cv.id}">审核</a>
+                                                <a href="${pageContext.request.contextPath}/claim_voucher/to_check?id=${cv.id}">审核</a>
                                             </c:if>
                                             <c:if test="${cv.status==Contant.CLAIMVOUCHER_APPROVED}">
-                                                <a href="/claim_voucher/to_check?id=${cv.id}">打款</a>
+                                                <a href="${pageContext.request.contextPath}/claim_voucher/to_check?id=${cv.id}">打款</a>
                                             </c:if>
-                                            <a href="/claim_voucher/detail?id=${cv.id}">详细信息</a>
+                                            <a href="${pageContext.request.contextPath}/claim_voucher/detail?id=${cv.id}">详细信息</a>
                                         </td>
                                     </tr>
                                 </c:forEach>

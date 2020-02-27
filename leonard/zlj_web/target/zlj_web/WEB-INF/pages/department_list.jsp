@@ -51,15 +51,15 @@
                                         <td>${dept.name}</td>
                                         <td>${dept.address}</td>
                                         <td>
-                                            <a href="/department/to_update?sn=${dept.sn}">部门编辑</a>
-                                            <a href="/department/remove?sn=${dept.sn}">部门删除</a>
+                                            <a href="${pageContext.request.contextPath}/department/to_update?sn=${dept.sn}">部门编辑</a>
+                                            <a href="${pageContext.request.contextPath}/department/remove?sn=${dept.sn}">部门删除</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>
                         </div>
-                        <button onclick="javascript:window.location.href='/department/to_add;'" class="btn btn-primary"> 添加部门 </button>
+                        <button onclick="javascript:window.location.href='${pageContext.request.contextPath}/department/to_add;'" class="btn btn-primary"> 添加部门 </button>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@ package com.zlj.biz;
 import com.zlj.entity.ClaimVoucher;
 import com.zlj.entity.ClaimVoucherItem;
 import com.zlj.entity.DealRecord;
+import com.zlj.entity.StatisResult;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,7 +33,10 @@ public interface ClaimVoucherBiz {
     //提交报销单
     void submit(int id);
 
-    //打款
+    //处理报销单
     void deal(DealRecord dealRecord);
+
+
+    List<StatisResult> calculateStatis();
 
 }

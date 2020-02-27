@@ -38,7 +38,7 @@ path:代替标签id和name  cssPath:代替标签css
                     </div>
                     <div class="card-body">
                         <p>(#^.^#)</p>
-                        <form:form action="/department/add" modelAttribute="department">
+                        <form:form action="${pageContext.request.contextPath}/department/add" modelAttribute="department">
                             <div class="form-group">
                                 <form:input path="sn" placeholder="部门编号.." class="form-control"/>
                             </div>

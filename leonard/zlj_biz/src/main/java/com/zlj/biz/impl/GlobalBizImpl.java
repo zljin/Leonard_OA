@@ -19,12 +19,7 @@ public class GlobalBizImpl implements GlobalBiz {
     @Override
     public Employee login(String sn, String password) {
         Employee employee = employeeDao.select(sn);
-
-        if(employee!=null&&password.equals(employee.getPassword())){
-            return employee;
-        }
-
-        return null;
+        return (employee!=null&&password.equals(employee.getPassword()))?employee:null;
     }
 
     @Override

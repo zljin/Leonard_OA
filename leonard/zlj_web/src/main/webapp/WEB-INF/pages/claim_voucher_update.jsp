@@ -34,7 +34,7 @@
                         <h3 class="h4">报销单详情信息</h3>
                     </div>
                     <div class="card-body">
-                        <form:form action="/claim_voucher/update" modelAttribute="info" class="form-horizontal">
+                        <form:form action="${pageContext.request.contextPath}/claim_voucher/update" modelAttribute="info" class="form-horizontal">
                             <form:hidden path="claimVoucher.id"/><!--??????????-->
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">事由</label>
@@ -88,4 +88,4 @@
 
 
 <!--动态表单传输-->
-<script src="/js/items.js?v=1"></script>
+<script src="${pageContext.request.contextPath}/js/items.js?v=1"></script>
